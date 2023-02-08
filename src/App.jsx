@@ -1,13 +1,48 @@
 import "./App.scss";
-import Header from "./containers/Header/Header";
 import CardContainer from "./containers/CardContainer/CardContainer";
 import team from "./data/employee-data";
+import Dropdown from "./components/Dropdown/Dropdown";
+import { useState } from "react";
 
 function App() {
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+  };
+  const [filteredArr, setFilteredArr] = useState(team);
+
+  const handleSelect = (event) => {
+    const filteredByRoleArr = team.filter((employee) => {
+      return employee.role.includes(event.target.value);
+    });
+    setFilteredArr(filteredByRoleArr);
+  };
+
   return (
-    <div className="App">
-      <Header />
-      <CardContainer teamArr={team} />
+    <div className="app">
+      <div className="header">
+        {" "}
+        TICKET TRACKER
+        <label htmlFor="search"></label>
+        <input
+          onInput={handleSearch}
+          type="text"
+          placeholder="Search"
+          id="search"
+        />
+        <Dropdown
+          handleSelect={handleSelect}
+          optionsArr={[
+            "Junior Software Developer",
+            "Software Developer",
+            "Senior Software Developer",
+            "Tester",
+            "Project Manager",
+            "Hard Man",
+          ]}
+        />
+      </div>
+
+      <CardContainer teamArr={filteredArr} />
     </div>
   );
 }
@@ -16,8 +51,6 @@ export default App;
 
 // Logic for functions in app
 
-// Add a function when you click + button, it adds one to the number
-// counter - same function but for - button
 // Add a filter function to the dropdown options where it only shows
 // the cards with that role
 // Add a filter function that takes the typed input and sees if

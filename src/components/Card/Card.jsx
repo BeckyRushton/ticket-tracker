@@ -3,7 +3,7 @@ import "./Card.scss";
 import { useState } from "react";
 
 const Card = (props) => {
-  const { name, role, ticketAmount } = props;
+  const { name, role } = props;
   const [counter, setCounter] = useState(0);
 
   const handleIncrement = () => {
