@@ -17,13 +17,13 @@
 }
 
 .counter {
+  width: 150px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
 .ticketNum {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
