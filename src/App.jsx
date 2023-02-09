@@ -5,16 +5,24 @@ import Dropdown from "./components/Dropdown/Dropdown";
 import { useState } from "react";
 
 function App() {
-  const handleSearch = (event) => {
-    console.log(event.target.value);
-  };
   const [filteredArr, setFilteredArr] = useState(team);
-
   const handleSelect = (event) => {
     const filteredByRoleArr = team.filter((employee) => {
       return employee.role.includes(event.target.value);
     });
     setFilteredArr(filteredByRoleArr);
+  };
+
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    const filteredSearch = team.filter((employee) => {
+      if (employee.name.toLowerCase().includes(searchTerm)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setFilteredArr(filteredSearch);
   };
 
   return (
@@ -48,11 +56,3 @@ function App() {
 }
 
 export default App;
-
-// Logic for functions in app
-
-// Add a filter function to the dropdown options where it only shows
-// the cards with that role
-// Add a filter function that takes the typed input and sees if
-// it is included in the name/role of the employee and show the
-// relevant cards

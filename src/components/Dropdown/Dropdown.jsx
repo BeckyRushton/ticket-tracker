@@ -12,7 +12,7 @@ const Dropdown = (props) => {
   });
   return (
     <select onChange={handleSelect} id="dropDown">
-      <option value="Select">Select</option>
+      <option value="">Select</option>
       {optionsJSX}
     </select>
   );
